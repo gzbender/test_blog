@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+
+
+{% block content %}
+	<div class="blog-list">
+		{% for blog in blogs %}
+			<div class="blog-item">
+				{%if user.is_authenticated %}
+					<div class="blog-item__subscribe">
+					{% if user not in blog.subscribers.all %}
+						<a href="{% url 'blog-subscribe' blog=blog.id %}?next=/blogs/">Subscribe</a>
+					{% else %}
+						<div>You already subscribed on this blog. <a href="{% url 'blog-unsubscribe' blog=blog.id %}?next=/blogs/">Unsubscribe</a></div>
+					{% endif %}
+					</div>
+				{% endif %}
+				<div class="blog-item__user">{{ blog.user.username }}</div>
+				<h3 class="blog-item__name">{{ blog.name }}</h3>
+
+				{% with post=blog.posts.latest  %}
+					{% if post %}
+					Last post:
+						{% include 'includes/post.html' %}
+					{% endif %}
+				{% endwith %}
+				<a href="{% url 'blog' blog=blog.id %}">More</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock content %}

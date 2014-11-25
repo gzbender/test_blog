@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+
+
+{% block content %}
+	<div class="newsfeed">
+		{% for post in posts %}
+			{% include 'includes/post.html' %}
+		{% endfor %}
+	</div>
+{% endblock content %}

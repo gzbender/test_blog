@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+
+
+{% block content %}
+	<h1>{{ blog.name }}</h1>
+
+	{% if blog.user == user %}
+		<a href="{% url 'post-add' %}">Add post</a>
+	{% endif %}
+	{% for post in blog.posts.all %}
+		{% include 'includes/post.html' %}
+	{% endfor %}
+{% endblock content %}

@@ -1,0 +1,14 @@
+<form action="." method="post">
+	{% csrf_token %}
+	{{ form.errors }}
+	{{ form.non_field_errors }}
+
+	{{ form.title.label_tag }}<br />
+	{{ form.title }}<br />
+
+	{{ form.content.label_tag }}<br />
+	{{ form.content }}<br />
+	{{ form.content.error }}<br />
+
+	<input type="submit" value="Save"/>
+</form>

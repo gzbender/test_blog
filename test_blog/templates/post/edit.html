@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+
+
+{% block content %}
+	<h2>{% if post %}Edit{% else %}New{% endif %} post</h2><br />
+	{% include 'includes/post_form.html' %}
+{% endblock content %}

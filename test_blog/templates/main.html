@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+
+
+{% block page %}
+	<header class="header">
+		<div class="user-block">
+			{% if user.is_authenticated %}
+				{{ user.username }}&nbsp;<a href="{% url 'auth:logout' %}?next=/">Logout</a>
+			{% else %}
+				{% include 'includes/login_form.html' %}
+			{% endif %}
+		</div>
+		{% include 'includes/main_menu.html' %}
+	</header>
+
+	<article class="content">
+		{% block content %}
+		{% endblock %}
+	</article>
+{% endblock page %}
+
+{% block footer %}{% endblock footer %}

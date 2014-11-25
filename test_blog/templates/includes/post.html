@@ -1,0 +1,17 @@
+<div class="post">
+	<div class="post__readed">
+		{% if post not in user.readed.all %}
+			<a href="{% url 'post-read' post=post.id %}?next={{ next }}">Readed</a>
+		{% endif %}
+	</div>
+	<div class="post__created">{{ post.created }}</div>
+	<h3 class="post__title">{{ post.title }}</h3>
+	<div class="post__content">{{ post.content }}</div>
+	<br />
+	<div class="post__readers">
+		Post readed:
+		{% for reader in post.readers.all %}
+			<a href="{% url 'blog' blog=reader.blog.id %}">{{ reader.username }}</a>{% if not forloop.last %},&nbsp;{% endif %}
+		{% endfor %}
+	</div>
+</div>
